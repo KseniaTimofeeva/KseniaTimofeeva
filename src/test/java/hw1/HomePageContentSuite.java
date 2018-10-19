@@ -79,7 +79,7 @@ public class HomePageContentSuite {
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> textUnderImages = driver.findElements(By.cssSelector("div.benefit-icon+span"));
 
-        assertEquals(textUnderImages.size(),4);
+        assertEquals(textUnderImages.size(), 4);
 
         for (WebElement text : textUnderImages) {
             assertTrue(text.isDisplayed());

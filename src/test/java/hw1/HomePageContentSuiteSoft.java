@@ -79,7 +79,7 @@ public class HomePageContentSuiteSoft {
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> textUnderImages = driver.findElements(By.cssSelector("div.benefit-icon+span"));
 
-        softAssert.assertEquals(textUnderImages.size(),4);
+        softAssert.assertEquals(textUnderImages.size(), 4);
 
         for (WebElement text : textUnderImages) {
             softAssert.assertTrue(text.isDisplayed());
@@ -109,13 +109,14 @@ public class HomePageContentSuiteSoft {
         softAssert.assertTrue(subHeaderLink.isDisplayed());
         softAssert.assertEquals(subHeaderLink.getAttribute("href"), "https://github.com/epam/JDI");
 
+
         //15 Assert left section
         softAssert.assertTrue(driver.findElement(By.cssSelector("div.uui-side-bar")).isDisplayed());
 
         //16 Assert footer
         softAssert.assertTrue(driver.findElement(By.cssSelector("footer")).isDisplayed());
 
-        //17 Close Browser
+        //17 Close BR
         driver.close();
     }
 }

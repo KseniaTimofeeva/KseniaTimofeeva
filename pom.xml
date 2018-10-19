@@ -54,5 +54,12 @@
             <version>3.14.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>4.14.2</version>
+        </dependency>
+
     </dependencies>
 </project>
