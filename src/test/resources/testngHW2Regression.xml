@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="HomeWork2 Regression Suite" parallel="methods" thread-count="3" verbose="1">
+    <test name="Regression">
+
+        <groups>
+            <run>
+                <include name="Regression"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="hw2.ex2.RegressionSuite"/>
+            <class name="hw2.ex2.SmokeRegressionSeparateSuite"/>
+            <class name="hw2.ex2.SmokeRegressionSimultaneousSuite"/>
+        </classes>
+
+    </test>
+</suite>

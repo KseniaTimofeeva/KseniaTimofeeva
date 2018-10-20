@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="HomeWork2 Annotations Suite" verbose="1">
+    <test name="Home page content">
+
+        <classes>
+            <class name="hw2.ex3.HomePageContentSuiteAnnotations"/>
+        </classes>
+
+    </test>
+</suite>

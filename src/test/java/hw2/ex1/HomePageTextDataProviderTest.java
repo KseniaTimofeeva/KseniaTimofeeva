@@ -25,10 +25,10 @@ public class HomePageTextDataProviderTest {
         driver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //3 Assert 4 texts below 4 pictures
-        WebElement textElement = driver.findElement(By.xpath("//div[@class='benefit']/span[contains(text(),'" + text + "')]"));
+        WebElement textElement = driver.findElement(
+                By.xpath("//div[@class='benefit']/span[@class='benefit-txt' and contains(normalize-space(), '"
+                        + text.replaceAll("\n", "") + "')]"));
 
-        System.out.println(text);
-        System.out.println(textElement.getText());
         assertEquals(textElement.getText(), text);
 
         //4 Close BR
