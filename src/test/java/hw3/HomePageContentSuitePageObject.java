@@ -17,6 +17,19 @@ import static java.lang.System.setProperty;
 
 public class HomePageContentSuitePageObject {
 
+    private List<String> headerElementsText = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+
+    private List<String> imagesText = Arrays.asList("To include good practices\nand ideas from successful\nEPAM project",
+            "To be flexible and\ncustomizable",
+            "To be multiplatform",
+            "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
+
+    private String mainText = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+            "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. " +
+            "UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS " +
+            "NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN " +
+            "REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
+
     private WebDriver driver;
     private HomePageHw3 homePage;
 
@@ -91,19 +104,5 @@ public class HomePageContentSuitePageObject {
         //16 Assert footer
         homePage.checkFooter();
     }
-
-
-    private List<String> headerElementsText = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
-
-    private List<String> imagesText = Arrays.asList("To include good practices\nand ideas from successful\nEPAM project",
-            "To be flexible and\ncustomizable",
-            "To be multiplatform",
-            "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
-
-    private String mainText = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
-            "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. " +
-            "UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS " +
-            "NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN " +
-            "REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
 
 }
