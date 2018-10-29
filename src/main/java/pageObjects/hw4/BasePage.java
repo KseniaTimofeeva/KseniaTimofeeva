@@ -14,7 +14,7 @@ import org.testng.Assert;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class BasePageHw4 {
+public class BasePage {
 
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
@@ -46,6 +46,9 @@ public class BasePageHw4 {
     @FindBy(css = "ul.uui-navigation.nav > li > ul > li > a[href='different-elements.html']")
     private SelenideElement serviceDifferentElementsOption;
 
+    @FindBy(css = "ul.uui-navigation.nav > li > ul > li > a[href='dates.html']")
+    private SelenideElement serviceDatesOption;
+
     @FindBy(css = "div[name='navigation-sidebar']")
     private SelenideElement leftSection;
 
@@ -68,6 +71,10 @@ public class BasePageHw4 {
 
     public void chooseServiceDifferentElementsOption() {
         serviceDifferentElementsOption.click();
+    }
+
+    public void chooseServiceDatesOption() {
+        serviceDatesOption.click();
     }
 
 

@@ -3,26 +3,36 @@ package hw4;
 import base.Hw4TestBase;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import enums.CheckboxLabels;
+import enums.DropdownLabels;
 import enums.PageTitles;
+import enums.RadioLabels;
 import enums.Users;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.hw4.BasePageHw4;
-import pageObjects.hw4.ServiceDifferentElementsPageHw4;
+import pageObjects.hw4.BasePage;
+import pageObjects.hw4.ServiceDiffElementsPage;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static java.lang.System.setProperty;
 
 public class ServicePageInterfaceSuite extends Hw4TestBase {
 
-    private BasePageHw4 basePage;
-    private ServiceDifferentElementsPageHw4 serviceDiffElPage;
+    private BasePage basePage;
+    private ServiceDiffElementsPage serviceDiffElPage;
+    private List<CheckboxLabels> testCheckboxes = Arrays.asList(CheckboxLabels.WATER, CheckboxLabels.WIND);
+    private List<RadioLabels> testRadios = Collections.singletonList(RadioLabels.SELEN);
+    private DropdownLabels testDropdown = DropdownLabels.YELLOW;
 
     @BeforeClass
     public void beforeClass() {
         setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         Configuration.startMaximized = true;
-        basePage = Selenide.page(BasePageHw4.class);
-        serviceDiffElPage = Selenide.page(ServiceDifferentElementsPageHw4.class);
+        basePage = Selenide.page(BasePage.class);
+        serviceDiffElPage = Selenide.page(ServiceDiffElementsPage.class);
     }
 
     @Test
@@ -41,11 +51,11 @@ public class ServicePageInterfaceSuite extends Hw4TestBase {
         basePage.checkUserIsLoggined(Users.PITER_CHAILOVSKII);
 
         //5 Click on "Service" in the header and check that drop down contains options
-//        basePage.checkHeaderServiceOptions();
+        basePage.checkHeaderServiceOptions();
 
         //6 Click on Service in the left section and check that drop down contains options
-//        basePage.chooseHeaderServiceCategory();
-//        basePage.checkLeftServiceOptions();
+        basePage.chooseHeaderServiceCategory();
+        basePage.checkLeftServiceOptions();
 
         //7 Open through the header menu Service -> Different Elements Page
         basePage.chooseHeaderServiceCategory();
@@ -65,7 +75,45 @@ public class ServicePageInterfaceSuite extends Hw4TestBase {
         basePage.checkLeftSectionIsDisplayed();
 
         //11 Select checkboxes
+        for (CheckboxLabels checkbox : testCheckboxes) {
+            serviceDiffElPage.selectCheckbox(checkbox);
+            serviceDiffElPage.checkCheckboxIsChecked(checkbox);
+        }
 
+        //12 Assert that for each checkbox there is an individual log row
+        // and value is corresponded to the status of checkbox
+        serviceDiffElPage.checkLogRowsDisplayed();
+        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
 
+        //13 Select radio
+        for (RadioLabels radio : testRadios) {
+            serviceDiffElPage.selectRadio(radio);
+            serviceDiffElPage.checkRadioIsChecked(radio);
+        }
+
+        //14 Assert that for radiobutton there is a log row
+        // and value is corresponded to the status of radiobutton
+        serviceDiffElPage.checkLogRowsDisplayed();
+        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
+
+        //15 Select in dropdown
+        serviceDiffElPage.selectInDropdown(testDropdown);
+        serviceDiffElPage.checkDropdownIsSelected(testDropdown);
+
+        //16 Assert that for dropdown there is a log row
+        // and value is corresponded to the selected value
+        serviceDiffElPage.checkLogRowsDisplayed();
+        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
+
+        //17 Unselect and assert checkboxes
+        for (CheckboxLabels checkbox : testCheckboxes) {
+            serviceDiffElPage.selectCheckbox(checkbox);
+            serviceDiffElPage.checkCheckboxIsUnchecked(checkbox);
+        }
+
+        //18 Assert that for each checkbox there is an individual log row
+        // and value is corresponded to the status of checkbox
+        serviceDiffElPage.checkLogRowsDisplayed();
+        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
     }
 }
