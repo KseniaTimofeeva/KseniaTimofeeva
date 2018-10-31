@@ -2,18 +2,17 @@ package pageObjects.hw4;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import dto.LogItem;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import utils.LogFactory;
+import pageObjects.hw4.center.RightSection;
 
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class DatesPage {
+public class Dates extends AbstractPage {
 
     @FindBy(css = ".uui-slider")
     private SelenideElement sliderTrack;
@@ -27,14 +26,13 @@ public class DatesPage {
     @FindBy(xpath = "//div[contains(@class, 'uui-slider')]/preceding-sibling::label")
     private SelenideElement slidersLabel;
 
-    private RightPanel rightPanel;
+    private RightSection rightSection;
 
-    private List<String> clickLog = new ArrayList<>();
     private Deque<SelenideElement> sliderStack = new LinkedList<>();
 
 
-    public DatesPage() {
-        rightPanel = Selenide.page(RightPanel.class);
+    public Dates() {
+        rightSection = Selenide.page(RightSection.class);
     }
 
     //methods
@@ -89,35 +87,13 @@ public class DatesPage {
         }
 
         Actions action = new Actions(getWebDriver());
-
         action.dragAndDropBy(slider, xOffsetInt, 0).build().perform();
-
-        String sliderInfo;
-        if (slider.equals(leftSlider)) {
-            sliderInfo = "(From)";
-        } else {
-            sliderInfo = "(To)";
-        }
-        addLog(slidersLabel.getText() + sliderInfo, destinationPercent);
-    }
-
-    private void addLog(Object element, Object value) {
-        clickLog.add(LogFactory.createLog(element, value));
-    }
-
-    private int getCurrentPosPercent(SelenideElement slider) {
-        return Integer.parseInt(slider.getAttribute("style")
-                .replace("left: ", "")
-                .replace("%;", ""));
+        rightSection.addLog();
     }
 
     //checks
-    public void checkLogRowsDisplayed() {
-        rightPanel.checkLogRowsDisplayed(clickLog);
-    }
+    public void checkSlidersLoggedNameAndStatusCorrect(int from, int to) {
+        rightSection.checkLoggedNameAndStatusCorrect(new LogItem("Range 2(From)", String.valueOf(from)), new LogItem("Range 2(To)", String.valueOf(to)));
 
-    public void checkLoggedNameAndStatusCorrect() {
-        rightPanel.checkLoggedNameAndStatusCorrect(clickLog);
     }
-
 }

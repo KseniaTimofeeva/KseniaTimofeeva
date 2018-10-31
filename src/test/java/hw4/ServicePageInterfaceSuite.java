@@ -1,119 +1,103 @@
 package hw4;
 
 import base.Hw4TestBase;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import enums.CheckboxLabels;
-import enums.DropdownLabels;
-import enums.PageTitles;
-import enums.RadioLabels;
-import enums.Users;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.hw4.BasePage;
-import pageObjects.hw4.ServiceDiffElementsPage;
+import pageObjects.hw4.DifferentElements;
+import pageObjects.hw4.HomePage;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static java.lang.System.setProperty;
+import static enums.CheckboxLabels.WATER;
+import static enums.CheckboxLabels.WIND;
+import static enums.DropdownLabels.YELLOW;
+import static enums.PageTitles.DIFFERENT_ELEMENTS;
+import static enums.PageTitles.HOME_PAGE;
+import static enums.RadioLabels.SELEN;
+import static enums.Users.PITER_CHAILOVSKII;
 
 public class ServicePageInterfaceSuite extends Hw4TestBase {
 
-    private BasePage basePage;
-    private ServiceDiffElementsPage serviceDiffElPage;
-    private List<CheckboxLabels> testCheckboxes = Arrays.asList(CheckboxLabels.WATER, CheckboxLabels.WIND);
-    private List<RadioLabels> testRadios = Collections.singletonList(RadioLabels.SELEN);
-    private DropdownLabels testDropdown = DropdownLabels.YELLOW;
+    private HomePage homePage;
+    private DifferentElements differentElements;
 
     @BeforeClass
     public void beforeClass() {
-        setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        Configuration.startMaximized = true;
-        basePage = Selenide.page(BasePage.class);
-        serviceDiffElPage = Selenide.page(ServiceDiffElementsPage.class);
+        homePage = Selenide.page(HomePage.class);
+        differentElements = Selenide.page(DifferentElements.class);
     }
 
     @Test
     public void servicePageInterfaceTest() {
 
         //1 Open test site by URL
-        basePage.openPage();
+        homePage.openPage();
 
         //2 Assert Browser title
-        basePage.checkTitle(PageTitles.HOME_PAGE);
+        homePage.checkTitle(HOME_PAGE);
 
         //3 Perform login
-        basePage.login(Users.PITER_CHAILOVSKII);
+        homePage.login(PITER_CHAILOVSKII);
 
-        //4 Assert User name that user is loggined
-        basePage.checkUserIsLoggined(Users.PITER_CHAILOVSKII);
+        //4 Assert User name that user is logged
+        homePage.checkUserIsLogged(PITER_CHAILOVSKII);
 
         //5 Click on "Service" in the header and check that drop down contains options
-        basePage.checkHeaderServiceOptions();
+        homePage.chooseHeaderServiceCategory();
+        homePage.checkHeaderServiceOptions();
 
-        //6 Click on Service in the left section and check that drop down contains options
-        basePage.chooseHeaderServiceCategory();
-        basePage.checkLeftServiceOptions();
+        //6 Click on "Service" in the left section and check that drop down contains options
+        homePage.chooseLeftServiceCategory();
+        homePage.checkLeftServiceOptions();
 
         //7 Open through the header menu Service -> Different Elements Page
-        basePage.chooseHeaderServiceCategory();
-        basePage.chooseServiceDifferentElementsOption();
-        basePage.checkTitle(PageTitles.DIFFERENT_ELEMENTS);
+        homePage.chooseHeaderServiceCategory();
+        homePage.chooseServiceDifferentElementsOption();
+        differentElements.checkTitle(DIFFERENT_ELEMENTS);
 
         //8 Check interface on Different elements page, it contains all needed elements
-        serviceDiffElPage.checkCheckboxesExist();
-        serviceDiffElPage.checkRadiosExist();
-        serviceDiffElPage.checkDropdownExist();
-        serviceDiffElPage.checkButtonsExist();
+        differentElements.checkCheckboxesExist();
+        differentElements.checkRadiosExist();
+        differentElements.checkDropdownExist();
+        differentElements.checkButtonsExist();
 
         //9 Assert that there is Right Section
-        serviceDiffElPage.checkRightSectionIsDisplayed();
+        differentElements.checkRightSectionIsDisplayed();
 
         //10 Assert that there is Left Section
-        basePage.checkLeftSectionIsDisplayed();
+        differentElements.checkLeftSectionIsDisplayed();
 
         //11 Select checkboxes
-        for (CheckboxLabels checkbox : testCheckboxes) {
-            serviceDiffElPage.selectCheckbox(checkbox);
-            serviceDiffElPage.checkCheckboxIsChecked(checkbox);
-        }
+        differentElements.selectCheckbox(WATER, WIND);
+        differentElements.checkCheckboxIsChecked(WATER, WIND);
 
         //12 Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
-        serviceDiffElPage.checkLogRowsDisplayed();
-        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
+        differentElements.checkLoggedNameAndStatusCorrect(WATER, true);
+        differentElements.checkLoggedNameAndStatusCorrect(WIND, true);
 
         //13 Select radio
-        for (RadioLabels radio : testRadios) {
-            serviceDiffElPage.selectRadio(radio);
-            serviceDiffElPage.checkRadioIsChecked(radio);
-        }
+        differentElements.selectRadio(SELEN);
+        differentElements.checkRadioIsChecked(SELEN);
 
         //14 Assert that for radiobutton there is a log row
         // and value is corresponded to the status of radiobutton
-        serviceDiffElPage.checkLogRowsDisplayed();
-        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
+        differentElements.checkLoggedNameAndStatusCorrect(SELEN);
 
         //15 Select in dropdown
-        serviceDiffElPage.selectInDropdown(testDropdown);
-        serviceDiffElPage.checkDropdownIsSelected(testDropdown);
+        differentElements.selectInDropdown(YELLOW);
+        differentElements.checkDropdownIsSelected(YELLOW);
 
         //16 Assert that for dropdown there is a log row
         // and value is corresponded to the selected value
-        serviceDiffElPage.checkLogRowsDisplayed();
-        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
+        differentElements.checkLoggedNameAndStatusCorrect(YELLOW);
 
         //17 Unselect and assert checkboxes
-        for (CheckboxLabels checkbox : testCheckboxes) {
-            serviceDiffElPage.selectCheckbox(checkbox);
-            serviceDiffElPage.checkCheckboxIsUnchecked(checkbox);
-        }
+        differentElements.selectCheckbox(WATER, WIND);
+        differentElements.checkCheckboxIsUnchecked(WATER, WIND);
 
         //18 Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
-        serviceDiffElPage.checkLogRowsDisplayed();
-        serviceDiffElPage.checkLoggedNameAndStatusCorrect();
+        differentElements.checkLoggedNameAndStatusCorrect(WATER, false);
+        differentElements.checkLoggedNameAndStatusCorrect(WIND, false);
     }
 }

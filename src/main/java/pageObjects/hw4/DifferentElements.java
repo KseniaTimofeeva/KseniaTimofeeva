@@ -4,16 +4,15 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import dto.LogItem;
 import enums.CheckboxLabels;
 import enums.DropdownLabels;
 import enums.RadioLabels;
 import org.openqa.selenium.support.FindBy;
-import utils.LogFactory;
+import pageObjects.hw4.base.LeftSection;
+import pageObjects.hw4.center.RightSection;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ServiceDiffElementsPage {
+public class DifferentElements extends AbstractPage {
 
     @FindBy(css = ".checkbox-row > label.label-checkbox")
     private ElementsCollection checkboxes;
@@ -27,20 +26,20 @@ public class ServiceDiffElementsPage {
     @FindBy(css = ".main-content-hg>.uui-button")
     private ElementsCollection buttons;
 
-    private RightPanel rightPanel;
+    private RightSection rightSection;
+    private LeftSection leftSection;
 
-    private List<String> clickLog = new ArrayList<>();
-
-
-    public ServiceDiffElementsPage() {
-        rightPanel = Selenide.page(RightPanel.class);
+    public DifferentElements() {
+        rightSection = Selenide.page(RightSection.class);
+        leftSection = Selenide.page(LeftSection.class);
     }
 
-
     //methods
-    public void selectCheckbox(CheckboxLabels checkboxLabel) {
-        SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel);
-        checkbox.click();
+    public void selectCheckbox(CheckboxLabels... checkboxLabels) {
+        for (CheckboxLabels checkboxLabel : checkboxLabels) {
+            SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel);
+            checkbox.click();
+        }
     }
 
     public void selectRadio(RadioLabels radioLabel) {
@@ -60,12 +59,6 @@ public class ServiceDiffElementsPage {
     private SelenideElement findRadioFromList(RadioLabels radioLabel) {
         return radios.find(Condition.text(radioLabel.getDisplayName()));
     }
-
-    private void addLog(Object element, Object value) {
-        clickLog.add(LogFactory.createLog(element, value));
-
-    }
-
 
     //checks
     public void checkCheckboxesExist() {
@@ -93,38 +86,50 @@ public class ServiceDiffElementsPage {
         }
     }
 
-    public void checkCheckboxIsChecked(CheckboxLabels checkboxLabel) {
-        SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
-        checkbox.shouldBe(Condition.checked);
-        addLog(checkboxLabel, true);
+    public void checkLeftSectionIsDisplayed() {
+        leftSection.checkLeftSectionIsDisplayed();
+    }
+
+    public void checkCheckboxIsChecked(CheckboxLabels... checkboxLabels) {
+        for (CheckboxLabels checkboxLabel : checkboxLabels) {
+            SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
+            checkbox.shouldBe(Condition.checked);
+            rightSection.addLog();
+        }
     }
 
     public void checkRadioIsChecked(RadioLabels radioLabel) {
         SelenideElement radio = findRadioFromList(radioLabel).$("input");
         radio.shouldBe(Condition.checked);
-        addLog(radioLabel, true);
+        rightSection.addLog();
     }
 
     public void checkDropdownIsSelected(DropdownLabels dropdownLabel) {
         dropdown.getSelectedOption().shouldHave(Condition.text(dropdownLabel.getDisplayName()));
-        addLog(dropdownLabel, true);
+        rightSection.addLog();
     }
 
-    public void checkCheckboxIsUnchecked(CheckboxLabels checkboxLabel) {
-        SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
-        checkbox.shouldNotBe(Condition.checked);
-        addLog(checkboxLabel, false);
+    public void checkCheckboxIsUnchecked(CheckboxLabels... checkboxLabels) {
+        for (CheckboxLabels checkboxLabel : checkboxLabels) {
+            SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
+            checkbox.shouldNotBe(Condition.checked);
+            rightSection.addLog();
+        }
     }
 
     public void checkRightSectionIsDisplayed() {
-        rightPanel.checkRightSectionIsDisplayed();
+        rightSection.checkRightSectionIsDisplayed();
     }
 
-    public void checkLogRowsDisplayed() {
-        rightPanel.checkLogRowsDisplayed(clickLog);
+    public void checkLoggedNameAndStatusCorrect(CheckboxLabels checkbox, boolean value) {
+        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(checkbox.getDisplayName(), String.valueOf(value)));
     }
 
-    public void checkLoggedNameAndStatusCorrect() {
-        rightPanel.checkLoggedNameAndStatusCorrect(clickLog);
+    public void checkLoggedNameAndStatusCorrect(RadioLabels radio) {
+        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(RadioLabels.type(), radio.getDisplayName()));
+    }
+
+    public void checkLoggedNameAndStatusCorrect(DropdownLabels dropdown) {
+        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(DropdownLabels.type(), dropdown.getDisplayName()));
     }
 }
