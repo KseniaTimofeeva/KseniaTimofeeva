@@ -17,6 +17,6 @@ public enum PageTitles {
 
     @Override
     public String toString() {
-        return displayName;
+        return "'" + displayName + "'";
     }
 }
