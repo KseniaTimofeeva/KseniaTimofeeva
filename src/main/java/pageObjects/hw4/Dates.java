@@ -3,6 +3,7 @@ package pageObjects.hw4;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import dto.LogItem;
+import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pageObjects.hw4.center.RightSection;
@@ -36,6 +37,7 @@ public class Dates extends AbstractPage {
     }
 
     //methods
+    @Step
     public void setSliders(int from, int to) {
         if (from == to) {
             if (sliderStack.isEmpty()) {

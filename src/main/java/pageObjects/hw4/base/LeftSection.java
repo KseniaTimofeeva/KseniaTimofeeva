@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import enums.ServiceOptions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 public class LeftSection {
@@ -19,11 +20,13 @@ public class LeftSection {
     private ElementsCollection serviceCategoryOptions;
 
     //methods
+    @Step
     public void chooseServiceCategory() {
         serviceCategory.click();
     }
 
     //checks
+    @Step
     public void checkServiceOptions() {
         serviceCategoryOptions.shouldHaveSize(ServiceOptions.values().length);
         serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(ServiceOptions.displayNames()));

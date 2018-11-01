@@ -2,6 +2,7 @@ package pageObjects.hw4;
 
 import com.codeborne.selenide.Selenide;
 import enums.Users;
+import io.qameta.allure.Step;
 import pageObjects.hw4.base.Header;
 import pageObjects.hw4.base.LeftSection;
 
@@ -16,6 +17,7 @@ public class HomePage extends AbstractPage {
     }
 
     //methods
+    @Step
     public void openPage() {
         Selenide.open("https://epam.github.io/JDI/");
     }
@@ -25,7 +27,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void chooseHeaderServiceCategory() {
-        header.chooseServiceCategory();
+        header.chooseHeaderServiceCategory();
     }
 
     public void chooseLeftServiceCategory() {
@@ -45,6 +47,7 @@ public class HomePage extends AbstractPage {
         header.checkUserIsLogged(user);
     }
 
+    @Step
     public void checkHeaderServiceOptions() {
         header.checkServiceOptions();
     }

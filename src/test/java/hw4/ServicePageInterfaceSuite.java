@@ -2,7 +2,11 @@ package hw4;
 
 import base.Hw4TestBase;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.hw4.DifferentElements;
 import pageObjects.hw4.HomePage;
@@ -15,6 +19,9 @@ import static enums.PageTitles.HOME_PAGE;
 import static enums.RadioLabels.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
+@Feature("Smoke tests")
+@Story("Service page interface testing")
+@Listeners(AllureAttachmentListener.class)
 public class ServicePageInterfaceSuite extends Hw4TestBase {
 
     private HomePage homePage;

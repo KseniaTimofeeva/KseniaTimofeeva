@@ -2,6 +2,8 @@ package hw4;
 
 import base.Hw4TestBase;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.hw4.Dates;
@@ -11,6 +13,8 @@ import static enums.PageTitles.DATES;
 import static enums.PageTitles.HOME_PAGE;
 import static enums.Users.PITER_CHAILOVSKII;
 
+@Feature("Smoke tests")
+@Story("Dates page sliders testing")
 public class DatesPageSlidersSuite extends Hw4TestBase {
 
     private HomePage homePage;

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import dto.LogItem;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Arrays;
@@ -48,6 +49,7 @@ public class RightSection {
         rightSection.shouldBe(Condition.visible);
     }
 
+    @Step
     public void checkLoggedNameAndStatusCorrect(LogItem... logItems) {
         ElementsCollection logRows = logsPanel.$$("li");
         logRows.shouldHaveSize(logRowsQty);

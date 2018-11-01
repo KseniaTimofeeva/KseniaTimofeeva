@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import enums.ServiceOptions;
 import enums.Users;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -39,6 +40,7 @@ public class Header {
     private SelenideElement serviceDatesOption;
 
     //methods
+    @Step
     public void login(Users user) {
         profileButton.click();
         loginField.sendKeys(user.login);
@@ -46,23 +48,28 @@ public class Header {
         enterButton.click();
     }
 
-    public void chooseServiceCategory() {
+    @Step
+    public void chooseHeaderServiceCategory() {
         serviceCategory.click();
     }
 
+    @Step
     public void chooseServiceDifferentElementsOption() {
         serviceDifferentElementsOption.click();
     }
 
+    @Step
     public void chooseServiceDatesOption() {
         serviceDatesOption.click();
     }
 
     //checks
+    @Step
     public void checkUserIsLogged(Users user) {
         userName.shouldHave(exactText(user.name));
     }
 
+    @Step
     public void checkServiceOptions() {
         serviceCategoryOptions.shouldHaveSize(ServiceOptions.values().length);
         serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(ServiceOptions.displayNames()));
