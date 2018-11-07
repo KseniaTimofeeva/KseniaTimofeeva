@@ -46,7 +46,7 @@ public class HomePageContentSuiteAnnotations extends Hw2TestBase {
     @Test
     public void homePageContentTest() {
 
-        //1 Open test site
+        //1 Open test JDIsite
         driver.navigate().to("https://epam.github.io/JDI/");
 
         //2 Assert Browser title

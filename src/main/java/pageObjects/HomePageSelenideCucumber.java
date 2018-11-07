@@ -2,8 +2,6 @@ package pageObjects;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -37,13 +35,13 @@ public class HomePageSelenideCucumber {
 
     //methods
     @Step
-    @When("I'm on the Home Page")
+//    @When("I'm on the Home Page")
     public void openPage() {
         Selenide.open("https://epam.github.io/JDI/index.html");
     }
 
     @Step
-    @When("I login as user (.+) with password (.+)")
+//    @When("I login as user (.+) with password (.+)")
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -54,13 +52,13 @@ public class HomePageSelenideCucumber {
 
     //checks
     @Step
-    @Then("The browser title is Home Page")
+//    @Then("The browser title is Home Page")
     public void checkTitle() {
         Assert.assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
     @Step
-    @Then("The user icon is displayed on the header")
+//    @Then("The user icon is displayed on the header")
     public void checkUserIcon() {
         profileButton.shouldBe(visible);
     }

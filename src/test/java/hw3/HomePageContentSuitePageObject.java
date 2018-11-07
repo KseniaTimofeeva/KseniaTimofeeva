@@ -55,7 +55,7 @@ public class HomePageContentSuitePageObject {
     @Test
     public void homePageContentTest() {
 
-        //1 Open test site
+        //1 Open test JDIsite
         homePage.open(driver);
 
         //2 Assert Browser title

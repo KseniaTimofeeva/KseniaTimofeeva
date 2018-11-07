@@ -39,7 +39,7 @@ public class HomePageContentSuite {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-        //1 Open test site
+        //1 Open test JDIsite
         driver.navigate().to("https://epam.github.io/JDI/");
 
         //2 Assert Browser title

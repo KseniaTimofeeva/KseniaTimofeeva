@@ -5,9 +5,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import dto.LogItem;
-import enums.CheckboxLabels;
-import enums.DropdownLabels;
-import enums.RadioLabels;
+import enums.Color;
+import enums.Element;
+import enums.Metal;
 import org.openqa.selenium.support.FindBy;
 import pageObjects.hw4.base.LeftSection;
 import pageObjects.hw4.center.RightSection;
@@ -35,41 +35,41 @@ public class DifferentElements extends AbstractPage {
     }
 
     //methods
-    public void selectCheckbox(CheckboxLabels... checkboxLabels) {
-        for (CheckboxLabels checkboxLabel : checkboxLabels) {
+    public void selectCheckbox(Element... checkboxLabels) {
+        for (Element checkboxLabel : checkboxLabels) {
             SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel);
             checkbox.click();
         }
     }
 
-    public void selectRadio(RadioLabels radioLabel) {
+    public void selectRadio(Metal radioLabel) {
         SelenideElement radio = findRadioFromList(radioLabel);
         radio.click();
     }
 
-    public void selectInDropdown(DropdownLabels dropdownLabel) {
+    public void selectInDropdown(Color dropdownLabel) {
         dropdown.click();
         dropdown.selectOption(dropdownLabel.getDisplayName());
     }
 
-    private SelenideElement findCheckboxFromCheckboxesList(CheckboxLabels checkboxLabel) {
+    private SelenideElement findCheckboxFromCheckboxesList(Element checkboxLabel) {
         return checkboxes.find(Condition.text(checkboxLabel.getDisplayName()));
     }
 
-    private SelenideElement findRadioFromList(RadioLabels radioLabel) {
+    private SelenideElement findRadioFromList(Metal radioLabel) {
         return radios.find(Condition.text(radioLabel.getDisplayName()));
     }
 
     //checks
     public void checkCheckboxesExist() {
-        checkboxes.shouldHaveSize(CheckboxLabels.values().length);
+        checkboxes.shouldHaveSize(Element.values().length);
         for (SelenideElement checkbox : checkboxes) {
             checkbox.shouldBe(Condition.visible);
         }
     }
 
     public void checkRadiosExist() {
-        radios.shouldHaveSize(RadioLabels.values().length);
+        radios.shouldHaveSize(Metal.values().length);
         for (SelenideElement radio : radios) {
             radio.shouldBe(Condition.visible);
         }
@@ -90,27 +90,27 @@ public class DifferentElements extends AbstractPage {
         leftSection.checkLeftSectionIsDisplayed();
     }
 
-    public void checkCheckboxIsChecked(CheckboxLabels... checkboxLabels) {
-        for (CheckboxLabels checkboxLabel : checkboxLabels) {
+    public void checkCheckboxIsChecked(Element... checkboxLabels) {
+        for (Element checkboxLabel : checkboxLabels) {
             SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
             checkbox.shouldBe(Condition.checked);
             rightSection.addLog();
         }
     }
 
-    public void checkRadioIsChecked(RadioLabels radioLabel) {
+    public void checkRadioIsChecked(Metal radioLabel) {
         SelenideElement radio = findRadioFromList(radioLabel).$("input");
         radio.shouldBe(Condition.checked);
         rightSection.addLog();
     }
 
-    public void checkDropdownIsSelected(DropdownLabels dropdownLabel) {
+    public void checkDropdownIsSelected(Color dropdownLabel) {
         dropdown.getSelectedOption().shouldHave(Condition.text(dropdownLabel.getDisplayName()));
         rightSection.addLog();
     }
 
-    public void checkCheckboxIsUnchecked(CheckboxLabels... checkboxLabels) {
-        for (CheckboxLabels checkboxLabel : checkboxLabels) {
+    public void checkCheckboxIsUnchecked(Element... checkboxLabels) {
+        for (Element checkboxLabel : checkboxLabels) {
             SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
             checkbox.shouldNotBe(Condition.checked);
             rightSection.addLog();
@@ -121,15 +121,15 @@ public class DifferentElements extends AbstractPage {
         rightSection.checkRightSectionIsDisplayed();
     }
 
-    public void checkLoggedNameAndStatusCorrect(CheckboxLabels checkbox, boolean value) {
+    public void checkLoggedNameAndStatusCorrect(Element checkbox, boolean value) {
         rightSection.checkLoggedNameAndStatusCorrect(new LogItem(checkbox.getDisplayName(), String.valueOf(value)));
     }
 
-    public void checkLoggedNameAndStatusCorrect(RadioLabels radio) {
-        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(RadioLabels.type(), radio.getDisplayName()));
+    public void checkLoggedNameAndStatusCorrect(Metal radio) {
+        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(Metal.type(), radio.getDisplayName()));
     }
 
-    public void checkLoggedNameAndStatusCorrect(DropdownLabels dropdown) {
-        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(DropdownLabels.type(), dropdown.getDisplayName()));
+    public void checkLoggedNameAndStatusCorrect(Color dropdown) {
+        rightSection.checkLoggedNameAndStatusCorrect(new LogItem(Color.type(), dropdown.getDisplayName()));
     }
 }

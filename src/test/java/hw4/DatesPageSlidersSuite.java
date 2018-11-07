@@ -4,7 +4,9 @@ import base.Hw4TestBase;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.hw4.Dates;
 import pageObjects.hw4.HomePage;
@@ -15,6 +17,7 @@ import static enums.Users.PITER_CHAILOVSKII;
 
 @Feature("Smoke tests")
 @Story("Dates page sliders testing")
+@Listeners(AllureAttachmentListener.class)
 public class DatesPageSlidersSuite extends Hw4TestBase {
 
     private HomePage homePage;
@@ -29,7 +32,7 @@ public class DatesPageSlidersSuite extends Hw4TestBase {
     @Test
     public void datesPageSlidersTest() {
 
-        //1 Open test site by URL
+        //1 Open test JDIsite by URL
         homePage.openPage();
 
         //2 Assert Browser title

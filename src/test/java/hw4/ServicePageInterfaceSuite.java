@@ -11,12 +11,12 @@ import org.testng.annotations.Test;
 import pageObjects.hw4.DifferentElements;
 import pageObjects.hw4.HomePage;
 
-import static enums.CheckboxLabels.WATER;
-import static enums.CheckboxLabels.WIND;
-import static enums.DropdownLabels.YELLOW;
+import static enums.Color.YELLOW;
+import static enums.Element.WATER;
+import static enums.Element.WIND;
+import static enums.Metal.SELEN;
 import static enums.PageTitles.DIFFERENT_ELEMENTS;
 import static enums.PageTitles.HOME_PAGE;
-import static enums.RadioLabels.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
 @Feature("Smoke tests")
@@ -36,7 +36,7 @@ public class ServicePageInterfaceSuite extends Hw4TestBase {
     @Test
     public void servicePageInterfaceTest() {
 
-        //1 Open test site by URL
+        //1 Open test JDIsite by URL
         homePage.openPage();
 
         //2 Assert Browser title
@@ -56,7 +56,7 @@ public class ServicePageInterfaceSuite extends Hw4TestBase {
         homePage.chooseLeftServiceCategory();
         homePage.checkLeftServiceOptions();
 
-        //7 Open through the header menu Service -> Different Elements Page
+        //7 Open through the header menu Service -> Different Element Page
         homePage.chooseHeaderServiceCategory();
         homePage.chooseServiceDifferentElementsOption();
         differentElements.checkTitle(DIFFERENT_ELEMENTS);

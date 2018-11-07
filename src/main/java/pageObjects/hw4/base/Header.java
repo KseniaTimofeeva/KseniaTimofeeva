@@ -40,7 +40,7 @@ public class Header {
     private SelenideElement serviceDatesOption;
 
     //methods
-    @Step("Login ('{user.login}', '{user.password}')")
+    @Step
     public void login(Users user) {
         profileButton.click();
         loginField.sendKeys(user.login);
@@ -64,7 +64,7 @@ public class Header {
     }
 
     //checks
-    @Step("Check user '{user.name}' is logged")
+    @Step
     public void checkUserIsLogged(Users user) {
         userName.shouldHave(exactText(user.name));
     }
