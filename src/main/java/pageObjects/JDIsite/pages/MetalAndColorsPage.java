@@ -17,10 +17,6 @@ import enums.Vegetable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @JPage(url = "/metals-colors.html", title = "Metal and Colors")
 public class MetalAndColorsPage extends WebPage {
 
@@ -77,16 +73,5 @@ public class MetalAndColorsPage extends WebPage {
     @Step
     public void submit() {
         submit.click();
-    }
-
-    // TODO Basically, this method has no relation with PO ...
-    public List<String> getExpectedResults(MetalsAndColorsData data) {
-        List<String> results = new ArrayList<>();
-        results.add("Summary: " + String.valueOf(data.summary.get(0) + data.summary.get(1)));
-        results.add("Elements: " + data.elements.stream().map(Element::getDisplayName).collect(Collectors.joining(", ")));
-        results.add("Color: " + data.color.getDisplayName());
-        results.add("Metal: " + data.metals.getDisplayName());
-        results.add("Vegetables: " + data.vegetables.stream().map(Vegetable::getDisplayName).collect(Collectors.joining(", ")));
-        return results;
     }
 }

@@ -4,3 +4,6 @@
 *.iws
 target/
 /out
+/build
+.allure/
+.logs/

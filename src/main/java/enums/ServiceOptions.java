@@ -13,8 +13,10 @@ public enum ServiceOptions {
     DATES("Dates"),
     COMPLEX_TABLE("Complex Table"),
     SIMPLE_TABLE("Simple Table"),
-    TABLES_WITH_WAGES("Tables With Pages"),
-    DIFFERENT("Different Elements");
+    USER_TABLE("User Table"),
+    TABLE_WITH_PAGES("Table With Pages"),
+    DIFFERENT_ELEMENTS("Different Elements"),
+    PERFORMANCE("Performance");
 
     private String displayName;
 
@@ -24,5 +26,9 @@ public enum ServiceOptions {
 
     public static List<String> displayNames() {
         return Arrays.stream(ServiceOptions.values()).map(v -> v.displayName).collect(Collectors.toList());
+    }
+
+    public static List<String> upperDisplayNames() {
+        return Arrays.stream(ServiceOptions.values()).map(v -> v.displayName.toUpperCase()).collect(Collectors.toList());
     }
 }

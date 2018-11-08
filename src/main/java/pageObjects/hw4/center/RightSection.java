@@ -45,6 +45,7 @@ public class RightSection {
     }
 
     //checks
+    @Step
     public void checkRightSectionIsDisplayed() {
         rightSection.shouldBe(Condition.visible);
     }

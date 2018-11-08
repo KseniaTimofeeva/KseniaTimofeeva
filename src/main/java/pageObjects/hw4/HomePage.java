@@ -47,7 +47,6 @@ public class HomePage extends AbstractPage {
         header.checkUserIsLogged(user);
     }
 
-    @Step
     public void checkHeaderServiceOptions() {
         header.checkServiceOptions();
     }

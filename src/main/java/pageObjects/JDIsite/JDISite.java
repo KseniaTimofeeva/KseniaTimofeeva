@@ -8,12 +8,14 @@ import dto.User;
 import enums.HeaderMenuItem;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import pageObjects.JDIsite.pages.HomePage;
 import pageObjects.JDIsite.pages.MetalAndColorsPage;
 import pageObjects.JDIsite.sections.Header;
 import pageObjects.JDIsite.sections.LoginForm;
 import pageObjects.JDIsite.sections.ResultSection;
+import utils.Utils;
+
+import static org.testng.Assert.assertEquals;
 
 @JSite("https://epam.github.io/JDI/")
 public class JDISite extends WebSite {
@@ -42,8 +44,6 @@ public class JDISite extends WebSite {
     //checks
     @Step
     public static void checkResultSectionContainsData(MetalsAndColorsData expectedData) {
-        Assert.assertEquals(resultSection.results.getTextList(), metalAndColorsPage.getExpectedResults(expectedData));
+        assertEquals(resultSection.results.getTextList(), Utils.getExpectedResults(expectedData));
     }
-
-
 }

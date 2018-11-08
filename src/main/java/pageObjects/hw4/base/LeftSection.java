@@ -32,6 +32,7 @@ public class LeftSection {
         serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(ServiceOptions.displayNames()));
     }
 
+    @Step
     public void checkLeftSectionIsDisplayed() {
         leftSection.shouldBe(Condition.visible);
     }

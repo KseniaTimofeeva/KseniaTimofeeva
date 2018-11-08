@@ -5,6 +5,8 @@
 
         <classes>
             <class name="hw4.ServicePageInterfaceSuite"/>
+            <class name="hw4.DatesPageSlidersSuite"/>
+            <class name="hw5.ServicePageInterfaceSuiteFailed"/>
         </classes>
 
     </test>

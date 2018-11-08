@@ -8,6 +8,7 @@ import dto.LogItem;
 import enums.Color;
 import enums.Element;
 import enums.Metal;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import pageObjects.hw4.base.LeftSection;
 import pageObjects.hw4.center.RightSection;
@@ -35,6 +36,7 @@ public class DifferentElements extends AbstractPage {
     }
 
     //methods
+    @Step
     public void selectCheckbox(Element... checkboxLabels) {
         for (Element checkboxLabel : checkboxLabels) {
             SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel);
@@ -42,11 +44,13 @@ public class DifferentElements extends AbstractPage {
         }
     }
 
+    @Step
     public void selectRadio(Metal radioLabel) {
         SelenideElement radio = findRadioFromList(radioLabel);
         radio.click();
     }
 
+    @Step
     public void selectInDropdown(Color dropdownLabel) {
         dropdown.click();
         dropdown.selectOption(dropdownLabel.getDisplayName());
@@ -61,6 +65,7 @@ public class DifferentElements extends AbstractPage {
     }
 
     //checks
+    @Step
     public void checkCheckboxesExist() {
         checkboxes.shouldHaveSize(Element.values().length);
         for (SelenideElement checkbox : checkboxes) {
@@ -68,6 +73,7 @@ public class DifferentElements extends AbstractPage {
         }
     }
 
+    @Step
     public void checkRadiosExist() {
         radios.shouldHaveSize(Metal.values().length);
         for (SelenideElement radio : radios) {
@@ -75,10 +81,12 @@ public class DifferentElements extends AbstractPage {
         }
     }
 
+    @Step
     public void checkDropdownExist() {
         dropdown.shouldBe(Condition.visible);
     }
 
+    @Step
     public void checkButtonsExist() {
         buttons.shouldHaveSize(2);
         for (SelenideElement button : buttons) {
@@ -90,6 +98,7 @@ public class DifferentElements extends AbstractPage {
         leftSection.checkLeftSectionIsDisplayed();
     }
 
+    @Step
     public void checkCheckboxIsChecked(Element... checkboxLabels) {
         for (Element checkboxLabel : checkboxLabels) {
             SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");
@@ -98,17 +107,20 @@ public class DifferentElements extends AbstractPage {
         }
     }
 
+    @Step
     public void checkRadioIsChecked(Metal radioLabel) {
         SelenideElement radio = findRadioFromList(radioLabel).$("input");
         radio.shouldBe(Condition.checked);
         rightSection.addLog();
     }
 
+    @Step
     public void checkDropdownIsSelected(Color dropdownLabel) {
         dropdown.getSelectedOption().shouldHave(Condition.text(dropdownLabel.getDisplayName()));
         rightSection.addLog();
     }
 
+    @Step
     public void checkCheckboxIsUnchecked(Element... checkboxLabels) {
         for (Element checkboxLabel : checkboxLabels) {
             SelenideElement checkbox = findCheckboxFromCheckboxesList(checkboxLabel).$("input");

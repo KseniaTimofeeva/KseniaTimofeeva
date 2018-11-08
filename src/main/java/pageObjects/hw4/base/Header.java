@@ -72,6 +72,6 @@ public class Header {
     @Step
     public void checkServiceOptions() {
         serviceCategoryOptions.shouldHaveSize(ServiceOptions.values().length);
-        serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(ServiceOptions.displayNames()));
+        serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(ServiceOptions.upperDisplayNames()));
     }
 }
