@@ -12,6 +12,7 @@ public class MetalsAndColorsDataProvider {
 
     @DataProvider
     public static Object[][] metalsAndColorsDataProvider() {
+        // TODO Take a look on TypeToken
         Object[][] result = null;
         ObjectMapper objectMapper = new ObjectMapper();
         try {

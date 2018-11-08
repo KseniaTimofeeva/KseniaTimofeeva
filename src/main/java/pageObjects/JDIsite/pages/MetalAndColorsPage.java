@@ -79,6 +79,7 @@ public class MetalAndColorsPage extends WebPage {
         submit.click();
     }
 
+    // TODO Basically, this method has no relation with PO ...
     public List<String> getExpectedResults(MetalsAndColorsData data) {
         List<String> results = new ArrayList<>();
         results.add("Summary: " + String.valueOf(data.summary.get(0) + data.summary.get(1)));
