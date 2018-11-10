@@ -1,15 +1,15 @@
 package enums;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public enum Vegetable {
-    @JsonProperty("Cucumber")
+    @SerializedName("Cucumber")
     CUCUMBER("Cucumber"),
-    @JsonProperty("Tomato")
+    @SerializedName("Tomato")
     TOMATO("Tomato"),
-    @JsonProperty("Vegetables")
+    @SerializedName("Vegetables")
     VEGETABLES("Vegetables"),
-    @JsonProperty("Onion")
+    @SerializedName("Onion")
     ONION("Onion");
 
     private String displayName;

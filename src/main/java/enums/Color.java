@@ -1,15 +1,15 @@
 package enums;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public enum Color {
-    @JsonProperty("Red")
+    @SerializedName("Red")
     RED("Red"),
-    @JsonProperty("Green")
+    @SerializedName("Green")
     GREEN("Green"),
-    @JsonProperty("Blue")
+    @SerializedName("Blue")
     BLUE("Blue"),
-    @JsonProperty("Yellow")
+    @SerializedName("Yellow")
     YELLOW("Yellow");
 
     private String displayName;

@@ -1,15 +1,15 @@
 package enums;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public enum Metal {
-    @JsonProperty("Gold")
+    @SerializedName("Gold")
     GOLD("Gold"),
-    @JsonProperty("Silver")
+    @SerializedName("Silver")
     SILVER("Silver"),
-    @JsonProperty("Bronze")
+    @SerializedName("Bronze")
     BRONZE("Bronze"),
-    @JsonProperty("Selen")
+    @SerializedName("Selen")
     SELEN("Selen");
 
     private String displayName;
