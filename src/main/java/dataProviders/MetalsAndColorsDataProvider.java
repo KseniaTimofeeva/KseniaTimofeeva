@@ -16,6 +16,7 @@ public class MetalsAndColorsDataProvider {
 
     @DataProvider
     public static Object[][] metalsAndColorsDataProvider() {
+        // TODO It will bu quite easier to use exactly the same data structure like in *.json file.
         Type type = new TypeToken<MetalsAndColorsData>() {
         }.getType();
 
@@ -26,6 +27,7 @@ public class MetalsAndColorsDataProvider {
             int size = jsonNode.size();
             result = new Object[size][1];
             for (int i = 0; i < size; i++) {
+                // TODO the name of the dataSet might be different, without numbers or 'data'...
                 MetalsAndColorsData data = new Gson().fromJson(jsonNode.getAsJsonObject("data_" + (i + 1)), type);
                 result[i][0] = data;
             }

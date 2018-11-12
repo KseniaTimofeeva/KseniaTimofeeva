@@ -56,6 +56,7 @@ public class MetalAndColorsPage extends WebPage {
 
     //methods
     @Step
+    // TODO Great, you have a fillForm method, but where is the form ?
     public void fillMetalsColorsForm(MetalsAndColorsData data) {
         oddsSummary.select(Odd.getByValue(data.summary.get(0)));
         evensSummary.select(Even.getByValue(data.summary.get(1)));
