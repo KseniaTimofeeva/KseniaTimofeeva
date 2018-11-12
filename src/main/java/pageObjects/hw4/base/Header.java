@@ -3,6 +3,8 @@ package pageObjects.hw4.base;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import enums.ServiceOptions;
 import enums.Users;
 import io.qameta.allure.Step;
@@ -41,6 +43,7 @@ public class Header {
 
     //methods
     @Step
+    @When("I login as user (.+)")
     public void login(Users user) {
         profileButton.click();
         loginField.sendKeys(user.login);
@@ -65,6 +68,7 @@ public class Header {
 
     //checks
     @Step
+    @Then("Displayed user name is (.+)")
     public void checkUserIsLogged(Users user) {
         userName.shouldHave(exactText(user.name));
     }

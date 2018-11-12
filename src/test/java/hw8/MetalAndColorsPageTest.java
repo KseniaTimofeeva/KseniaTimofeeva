@@ -34,8 +34,8 @@ public class MetalAndColorsPageTest extends MetalAndColorsPageInit {
 
         //3 Fill form Metals & Colors by data
         //Submit form Metals & Colors
-        metalAndColorsPage.fillMetalsColorsForm(data);
-        metalAndColorsPage.submit();
+        metalAndColorsPage.metalsAndColorsForm.fill(data);
+        metalAndColorsPage.metalsAndColorsForm.submit();
 
         //4 Result sections should contains data
         checkResultSectionContainsData(data);
