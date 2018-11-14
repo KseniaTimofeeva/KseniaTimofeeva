@@ -12,7 +12,7 @@ public class HomePageTextUnderPicturesDataProvider {
                 {"To include good practices\nand ideas from successful\nEPAM project", textUnderPicturesQty},
                 {"To be flexible and\ncustomizable", textUnderPicturesQty},
                 {"To be multiplatform", textUnderPicturesQty},
-                {"Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…", textUnderPicturesQty}
+                {"Already have good commonElements\n(about 20 internal and\nsome external projects),\nwish to get more…", textUnderPicturesQty}
         };
     }
 }

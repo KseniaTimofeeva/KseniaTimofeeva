@@ -14,17 +14,17 @@ Feature: Service page tests
     And User table contains following values:
       | Number | User             | Description                  |
       | 1      | Roman            | Lorem ipsum                  |
-      | 2      | SergeyIvan       | Lorem ipsum                  |
+      | 2      | Sergey Ivan      | Lorem ipsum                  |
       | 3      | Vladzimir        | Lorem ipsum                  |
-      | 4      | Helen Benett     | Lorem ipsum some description |
+      | 4      | Helen Bennett    | Lorem ipsum some description |
       | 5      | Yoshi Tannamuri  | Lorem ipsum some description |
       | 6      | Giovanni Rovelli | Lorem ipsum some description |
+
     When I select 'vip' checkbox for "Sergey Ivan"
     Then 1 log row has "Vip: condition changed to true" text in log section
-    When I click on dropdown in column Type for user Roman
-    Then droplist contains values
+    When I click on dropdown in column Type for user "Roman"
+    Then droplist contains values:
       | Dropdown Values |
       | Admin           |
       | User            |
       | Manager         |
-

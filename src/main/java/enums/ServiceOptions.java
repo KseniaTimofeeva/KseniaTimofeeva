@@ -3,6 +3,7 @@ package enums;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by ksenia on 22.10.2018.
@@ -30,5 +31,9 @@ public enum ServiceOptions {
 
     public static List<String> upperDisplayNames() {
         return Arrays.stream(ServiceOptions.values()).map(v -> v.displayName.toUpperCase()).collect(Collectors.toList());
+    }
+
+    public static ServiceOptions getByName(String name) {
+        return Stream.of(ServiceOptions.values()).filter(e -> e.displayName.equals(name)).findFirst().orElseThrow(RuntimeException::new);
     }
 }

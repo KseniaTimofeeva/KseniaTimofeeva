@@ -129,7 +129,7 @@ public class HomePageContentSuiteAnnotations extends Hw2TestBase {
     private List<String> imagesText = Arrays.asList("To include good practices\nand ideas from successful\nEPAM project",
             "To be flexible and\ncustomizable",
             "To be multiplatform",
-            "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
+            "Already have good commonElements\n(about 20 internal and\nsome external projects),\nwish to get more…");
 
     private String mainText = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
             "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. " +

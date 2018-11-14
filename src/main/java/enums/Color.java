@@ -2,6 +2,8 @@ package enums;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.stream.Stream;
+
 public enum Color {
     @SerializedName("Red")
     RED("Red"),
@@ -25,5 +27,9 @@ public enum Color {
 
     public static String type() {
         return "Colors";
+    }
+
+    public static Color getByName(String name) {
+        return Stream.of(Color.values()).filter(e -> e.displayName.equals(name)).findFirst().orElseThrow(RuntimeException::new);
     }
 }

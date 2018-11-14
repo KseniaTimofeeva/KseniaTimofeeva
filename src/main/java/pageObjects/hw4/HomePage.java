@@ -1,7 +1,6 @@
 package pageObjects.hw4;
 
 import com.codeborne.selenide.Selenide;
-import cucumber.api.java.en.When;
 import enums.Users;
 import io.qameta.allure.Step;
 import pageObjects.hw4.base.Header;
@@ -19,7 +18,6 @@ public class HomePage extends AbstractPage {
 
     //methods
     @Step
-    @When("I'm on the Home Page")
     public void openPage() {
         Selenide.open("https://epam.github.io/JDI/");
     }

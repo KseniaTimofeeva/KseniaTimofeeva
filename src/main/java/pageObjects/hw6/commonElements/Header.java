@@ -1,4 +1,4 @@
-package pageObjects.hw4.base;
+package pageObjects.hw6.commonElements;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
@@ -7,6 +7,8 @@ import enums.ServiceOptions;
 import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.exactText;
 
@@ -36,26 +38,36 @@ public class Header {
     @FindBy(css = "ul.uui-navigation.nav > li > ul > li > a[href='different-elements.html']")
     private SelenideElement serviceDifferentElementsOption;
 
+    @FindBy(css = "ul.uui-navigation.nav > li > ul > li > a[href='user-table.html']")
+    private SelenideElement serviceUserTableOption;
+
     @FindBy(css = "ul.uui-navigation.nav > li > ul > li > a[href='dates.html']")
     private SelenideElement serviceDatesOption;
 
     //methods
-    @Step
-    public void login(Users user) {
+    public void login(String userName) {
+        Users user = Users.getByName(userName);
         profileButton.click();
         loginField.sendKeys(user.login);
         passwordField.sendKeys(user.password);
         enterButton.click();
     }
 
-    @Step
     public void chooseHeaderServiceCategory() {
         serviceCategory.click();
     }
 
-    @Step
-    public void chooseServiceDifferentElementsOption() {
-        serviceDifferentElementsOption.click();
+    public void chooseServiceOption(ServiceOptions option) {
+        switch (option) {
+            case DIFFERENT_ELEMENTS:
+                serviceDifferentElementsOption.click();
+                break;
+            case USER_TABLE:
+                serviceUserTableOption.click();
+                break;
+            default:
+                throw new RuntimeException("Unexpected Service option");
+        }
     }
 
     @Step
@@ -64,14 +76,12 @@ public class Header {
     }
 
     //checks
-    @Step
-    public void checkUserIsLogged(Users user) {
-        userName.shouldHave(exactText(user.name));
+    public void checkUserIsLogged(String name) {
+        userName.shouldHave(exactText(name));
     }
 
-    @Step
-    public void checkServiceOptions() {
-        serviceCategoryOptions.shouldHaveSize(ServiceOptions.values().length);
-        serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(ServiceOptions.upperDisplayNames()));
+    public void checkServiceOptions(List<String> options) {
+        serviceCategoryOptions.shouldHaveSize(options.size());
+        serviceCategoryOptions.shouldHave(CollectionCondition.exactTexts(options));
     }
 }

@@ -2,6 +2,8 @@ package enums;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.stream.Stream;
+
 public enum Metal {
     @SerializedName("Gold")
     GOLD("Gold"),
@@ -26,7 +28,8 @@ public enum Metal {
         return "metal";
     }
 
-    public static String logAction() {
-        return "value changed to";
+    public static Metal getByName(String name) {
+        return Stream.of(Metal.values()).filter(e -> e.displayName.equals(name)).findFirst().orElseThrow(RuntimeException::new);
     }
+
 }
