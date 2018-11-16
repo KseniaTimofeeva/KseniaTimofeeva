@@ -124,7 +124,7 @@ public class DifferentElements {
     }
 
     @Step
-    @Then("Log rows are displayed, checkbox name and its status is corresponding to values:")
+    @Then("^Log rows are displayed, checkbox name and its status is corresponding to values:$")
     public void checkLog(Map<String, String> expected) {
         for (Map.Entry<String, String> entry : expected.entrySet()) {
             checkLoggedNameAndStatusCorrect(Element.getByName(entry.getKey()), Boolean.valueOf(entry.getValue()));
@@ -132,13 +132,13 @@ public class DifferentElements {
     }
 
     @Step
-    @Then("Log row is displayed, radiobutton name and its status is corresponding to \"(.+)\"")
+    @Then("^Log row is displayed, radiobutton name and its status is corresponding to \"(.+)\"$")
     public void checkRadiobuttonLog(String name) {
         checkLoggedNameAndStatusCorrect(Metal.getByName(name));
     }
 
     @Step
-    @Then("Log row is displayed, dropdown name and selected value is corresponding to \"(.+)\"")
+    @Then("^Log row is displayed, dropdown name and selected value is corresponding to \"(.+)\"$")
     public void checkDropdownLog(String name) {
         checkLoggedNameAndStatusCorrect(Color.getByName(name));
     }

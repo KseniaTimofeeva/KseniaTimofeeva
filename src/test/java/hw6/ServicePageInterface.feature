@@ -44,19 +44,19 @@ Feature: Service page tests
     When I select checkboxes:
       | Water |
       | Wind  |
-    Then Log rows are displayed, checkbox name and its status is corresponding to values:
+    Then Log rows are displayed, checkbox name and its status is corresponding to values:
       | Water | True |
       | Wind  | True |
 
     When I select radio "Selen"
-    Then Log row is displayed, radiobutton name and its status is corresponding to "Selen"
+    Then Log row is displayed, radiobutton name and its status is corresponding to "Selen"
 
     When I select in dropdown "Yellow"
-    Then Log row is displayed, dropdown name and selected value is corresponding to "Yellow"
+    Then Log row is displayed, dropdown name and selected value is corresponding to "Yellow"
 
     When I unselect checkboxes:
       | Water |
       | Wind  |
-    Then Log rows are displayed, checkbox name and its status is corresponding to values:
+    Then Log rows are displayed, checkbox name and its status is corresponding to values:
       | Water | False |
       | Wind  | False |
